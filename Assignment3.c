@@ -321,6 +321,12 @@ int main(int argc, char **argv)
             }
             printLinkedList(head);
         }
+        else if (option == 5){
+            return 0;
+        }
+        else {
+            printf("\nInvalid option\n\n");
+        }
     }
 
     return 0;
