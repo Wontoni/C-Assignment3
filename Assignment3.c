@@ -282,6 +282,7 @@ int main(int argc, char **argv)
             else
             {
                 printf("Error: File could not be opened");
+                return 0;
             }
         }
         else if (option == 2)
@@ -293,16 +294,31 @@ int main(int argc, char **argv)
             }
             else
             {
-                printf("Error");
+                printf("\nError: No file loaded\n");
+                return 0;
             }
         }
         else if (option == 3)
         {
-            head = compactMemory(head);
-            printf("\nOperation Successful\n\n");
+            if (inputFile != NULL)
+            {
+                head = compactMemory(head);
+                printf("\nOperation Successful\n\n");
+                return 0;
+            }
+            else
+            {
+                printf("\nError: No file loaded\n");
+                return 0;
+            }
         }
         else if (option == 4)
         {
+            if (inputFile == NULL)
+            {
+                printf("\nError: No file loaded\n");
+                return 0;
+            }
             printLinkedList(head);
         }
     }
