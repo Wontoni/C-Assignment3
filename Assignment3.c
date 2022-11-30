@@ -305,7 +305,6 @@ int main(int argc, char **argv)
             {
                 head = compactMemory(head);
                 printf("\nOperation Successful\n\n");
-                return 0;
             }
             else
             {
