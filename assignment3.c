@@ -3,8 +3,9 @@
 #include <string.h>
 
 /**
- * @brief
- *
+ * This is the node struct.
+ * Contains definitions regarding type,
+ * index base, and memory limit.
  */
 typedef struct node
 {
@@ -19,10 +20,11 @@ typedef struct node
 } node;
 
 /**
- * @brief
+ * This function finds the middle node
+ * within a linked list.
  *
- * @param head
- * @return node*
+ * @param head is the head node
+ * @return the node called slow
  */
 node *findMid(node *head)
 {
@@ -37,6 +39,14 @@ node *findMid(node *head)
     return slow;
 }
 
+/**
+ * This function merges the left and right nodes as well as
+ * mallocing the required memory.
+ * 
+ * @param left is the left nodes
+ * @param right is the right nodes
+ * @return the node called ans
+*/
 node *merge(node *left, node *right)
 {
     if (left == NULL)
@@ -87,6 +97,12 @@ node *merge(node *left, node *right)
     return ans;
 }
 
+/**
+ * This function merge sorts the linked list.
+ * 
+ * @param head is the head node
+ * @return results as a linked list
+*/
 node *mergeSort(node *head)
 {
     if (head == NULL || head->next == NULL)
@@ -105,6 +121,13 @@ node *mergeSort(node *head)
     return result;
 }
 
+/**
+ * This function creates a linked list using a file
+ * containing legible data.
+ * 
+ * @param fp is the file pointer
+ * @return the head as a node
+*/
 node *createLinkedList(FILE *fp)
 {
     node *head = (node *)malloc(sizeof(node));
@@ -115,6 +138,10 @@ node *createLinkedList(FILE *fp)
     {
         char line[100];
         fgets(line, 100, fp);
+        if(strlen(line) == 100) {
+            printf("Error: There is something wrong with the file\n");
+            exit(-1);
+        }
         token = strtok(line, " \n");
         headcpy->next = (node *)malloc(sizeof(node));
         headcpy->next->prev = headcpy;
@@ -133,12 +160,17 @@ node *createLinkedList(FILE *fp)
                 break;
             case 1:
                 headcpy->base = atoi(token);
+                if(headcpy->base < 0) {
+                    printf("Error: The base was less than 0\n");
+                    exit(0);
+                }
                 break;
             case 2:
                 headcpy->limit = atoi(token);
                 break;
             default:
-                printf("Extra input\n");
+                printf("Error: There was an extra input\n");
+                exit(-1);
                 break;
             }
             token = strtok(NULL, " \n");
@@ -152,6 +184,11 @@ node *createLinkedList(FILE *fp)
     return head;
 }
 
+/**
+ * This function prints to the terminal the linked list.
+ * 
+ * @param head is the head node
+*/
 void printLinkedList(node *head)
 {
     node *temp = head;
@@ -172,6 +209,12 @@ void printLinkedList(node *head)
     printf("\n");
 }
 
+/**
+ * This function merges the "nodes" together getting rid of the "holes" within memory.
+ * 
+ * @param head is the head node
+ * @return a newHead if the node head has changed
+*/
 node *mergeHoles(node *head)
 {
     node *curr = head;
@@ -209,6 +252,13 @@ node *mergeHoles(node *head)
     }
     return newHead;
 }
+
+/**
+ * This function compact multiple segregated memory chunks into one monolithic block.
+ * 
+ * @param head is the node head
+ * @return a newHead if the node head has changed
+*/
 node *compactMemory(node *head)
 {
     node *curr = head;
@@ -255,14 +305,26 @@ node *compactMemory(node *head)
     }
     return newHead;
 }
+
+/**
+ * This function is the menu that is called in the terminal.
+ * 
+ * @return the option selected by the user
+*/
 int menu()
 {
-    printf("1. load an input file\n2. merge holes\n3. compact memory\n4. print memory view\n5. Exit the program\n\n");
+    printf("\n1. load an input file\n2. merge holes\n3. compact memory\n4. print memory view\n5. Exit the program\n\n");
     int option;
     scanf("%d", &option);
     return option;
 }
 
+/**
+ * This is the main
+ * 
+ * @param argc is the number of arguments within the argv array
+ * @param argv is the array that contains additional inputs
+*/
 int main(int argc, char **argv)
 {
     FILE *inputFile = NULL;
@@ -283,7 +345,7 @@ int main(int argc, char **argv)
             else
             {
                 printf("Error: File could not be opened");
-                return 0;
+                return -1;
             }
         }
         else if (option == 2)
@@ -296,7 +358,7 @@ int main(int argc, char **argv)
             else
             {
                 printf("\nError: No file loaded\n");
-                return 0;
+                return -1;
             }
         }
         else if (option == 3)
@@ -309,7 +371,7 @@ int main(int argc, char **argv)
             else
             {
                 printf("\nError: No file loaded\n");
-                return 0;
+                return -1;
             }
         }
         else if (option == 4)
@@ -317,7 +379,7 @@ int main(int argc, char **argv)
             if (inputFile == NULL)
             {
                 printf("\nError: No file loaded\n");
-                return 0;
+                return -1;
             }
             printLinkedList(head);
         }
@@ -326,7 +388,7 @@ int main(int argc, char **argv)
         }
         else {
             printf("\nError: Invalid option\n");
-            return 0;
+            return -1;
         }
     }
 
