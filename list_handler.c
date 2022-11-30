@@ -23,16 +23,12 @@
  */
 
 /**
+ * The createLinkedList function will parse through a given file
+ * and format to create a linked list and sorts it.
  *
- * node *createLinkedList(FILE *fp)
+ * @param fp File to be parsed through
  *
- * Summary of the createLinkedList function:
- *      The createLinkedList function will parse through a given file
- *      and format to create a linked list and sorts it.
- *
- * Parameters   : *fp:   File to be parsed through
- *
- * Return Value : head node of the produced linked list
+ * @return head node of the produced linked list
  *
  */
 node *createLinkedList(FILE *fp)
@@ -63,12 +59,17 @@ node *createLinkedList(FILE *fp)
                     break;
                 case 1:
                     headcpy->base = atoi(token);
+                    if(headcpy->base < 0) {
+                    printf("Error: The base was less than 0\n");
+                    exit(0);
+                    }
                     break;
                 case 2:
                     headcpy->limit = atoi(token);
                     break;
                 default:
-                    printf("Extra input\n");
+                    printf("Error: There was an extra input\n");
+                    exit(-1);
                     break;
             }
             token = strtok(NULL, " \n");
@@ -83,16 +84,12 @@ node *createLinkedList(FILE *fp)
 }
 
 /**
+ * The printLinkedList function will start at a linked list's
+ * head and print every node into the console.
  *
- * void printLinkedList(node *head)
+ * @param head:   Head node of the linked list
  *
- * Summary of the printLinkedList function:
- *      The printLinkedList function will start at a linked list's
- *      head and print every node into the console.
- *
- * Parameters   : *head:   Head node of the linked list
- *
- * Return Value : Nothing -- Note: Prints the linked list in the console
+ * @return Nothing -- Note: Prints the linked list in the console
  *
  */
 void printLinkedList(node *head)
@@ -116,18 +113,14 @@ void printLinkedList(node *head)
 }
 
 /**
- *
- * node *mergeHoles(node *head)
- *
- * Summary of the mergeHoles function:
- *      The mergeHoles function will check if two nodes adjacent to
- *      each other are both holes, and will merge them into one hole
- *      if they are.
+ * The mergeHoles function will check if two nodes adjacent to
+ * each other are both holes, and will merge them into one hole
+ * if they are.
  *
  *
- * Parameters   : *head:   Head of the linked list to check through
+ * @param head Head of the linked list to check through
  *
- * Return Value : head node of the linked list wit holes merged
+ * @return head node of the linked list wit holes merged
  *
  */
 node *mergeHoles(node *head)
@@ -168,17 +161,13 @@ node *mergeHoles(node *head)
 }
 
 /**
- *
- * node *compactMemory(node *head)
- *
- * Summary of the compactMemory function:
- *      The compactMemory function will move all holes in memory at the end, and
- *      move allocated blocks of memory together in the linked list.
+ * The compactMemory function will move all holes in memory at the end, and
+ * move allocated blocks of memory together in the linked list.
  *
  *
- * Parameters   : *head:   Head of the linked list to check through
+ * @param head Head of the linked list to check through
  *
- * Return Value : head node of the linked list with memory compacted
+ * @return head node of the linked list with memory compacted
  *
  */
 node *compactMemory(node *head)

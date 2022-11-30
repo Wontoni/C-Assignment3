@@ -22,14 +22,10 @@
  */
 
 /**
+ * The menu function will print a menu in the console
+ * and prompt the user to input an option.
  *
- * int menu()
- *
- * Summary of the findMid function:
- *      The menu function will print a menu in the console
- *      and prompt the user to input an option.
- *
- * Return Value : option selected by the user
+ * @return option selected by the user
  *
  */
 int menu()
@@ -41,18 +37,14 @@ int menu()
 }
 
 /**
+ * The main function will drive the program, and check if input
+ * values are valid, and call other files/functions.
  *
- * int main(int argc, char **argv)
- *
- * Summary of the main function:
- *      The main function will drive the program, and check if input
- *      values are valid, and call other files/functions.
- *
- * Parameters   : argc:   Number of arguments
- *                **argv: Provided arguments
+ * @param argc Number of arguments
+ * @param argv Provided arguments
  *
  *
- * Return Value : exit value
+ * @return exit value
  *
  */
 int main(int argc, char **argv)

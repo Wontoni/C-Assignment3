@@ -22,16 +22,12 @@
  */
 
 /**
+ * The findMid function will look for the middle node in the
+ * linked list.
  *
- * node *findMid(node *head)
+ * @param head Head of the linked list to check through
  *
- * Summary of the findMid function:
- *      The findMid function will look for the middle node in the
- *      linked list.
- *
- * Parameters   : *head:   Head of the linked list to check through
- *
- * Return Value : the middle node of the linked list
+ * @return the middle node of the linked list
  *
  */
 node *findMid(node *head)
@@ -48,17 +44,13 @@ node *findMid(node *head)
 }
 
 /**
+ * The merge function will check the left and right nodes
+ * values and order them.
  *
- * node *merge(node *left, node *right)
+ * @param left left node to merge
+ * @param right right node to merge
  *
- * Summary of the merge function:
- *      The merge function will check the left and right nodes
- *      values and order them.
- *
- * Parameters   : *left:   left node to merge
- *                *right:  right node to merge
- *
- * Return Value : the nodes sorted into one linked list.
+ * @return the nodes sorted into one linked list.
  *
  */
 node *merge(node *left, node *right)
@@ -112,18 +104,14 @@ node *merge(node *left, node *right)
 }
 
 /**
+ * The mergeSort function will sort a linked list using
+ * the mergesort algorithm, by finding the middle node,
+ * and sorting the left and right through recursive call
+ * chains.
  *
- * node *mergeSort(node *head)
+ * @param head:   Head of the linked list to sort
  *
- * Summary of the mergeSort function:
- *      The mergeSort function will sort a linked list using
- *      the mergesort algorithm, by finding the middle node,
- *      and sorting the left and right through recursive call
- *      chains.
- *
- * Parameters   : *head:   Head of the linked list to sort
- *
- * Return Value : the sorted linked list's head
+ * @return the sorted linked list's head
  *
  */
 node *mergeSort(node *head)
