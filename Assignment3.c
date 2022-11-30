@@ -325,7 +325,8 @@ int main(int argc, char **argv)
             return 0;
         }
         else {
-            printf("\nInvalid option\n\n");
+            printf("\nError: Invalid option\n");
+            return 0;
         }
     }
 
