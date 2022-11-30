@@ -138,6 +138,10 @@ node *createLinkedList(FILE *fp)
     {
         char line[100];
         fgets(line, 100, fp);
+        if(strlen(line) == 100) {
+            printf("Error: There is something wrong with the file\n");
+            exit(-1);
+        }
         token = strtok(line, " \n");
         headcpy->next = (node *)malloc(sizeof(node));
         headcpy->next->prev = headcpy;
@@ -156,12 +160,17 @@ node *createLinkedList(FILE *fp)
                 break;
             case 1:
                 headcpy->base = atoi(token);
+                if(headcpy->base < 0) {
+                    printf("Error: The base was less than 0\n");
+                    exit(0);
+                }
                 break;
             case 2:
                 headcpy->limit = atoi(token);
                 break;
             default:
-                printf("Extra input\n");
+                printf("Error: There was an extra input\n");
+                exit(-1);
                 break;
             }
             token = strtok(NULL, " \n");
@@ -304,7 +313,7 @@ node *compactMemory(node *head)
 */
 int menu()
 {
-    printf("1. load an input file\n2. merge holes\n3. compact memory\n4. print memory view\n5. Exit the program\n\n");
+    printf("\n1. load an input file\n2. merge holes\n3. compact memory\n4. print memory view\n5. Exit the program\n\n");
     int option;
     scanf("%d", &option);
     return option;
@@ -336,7 +345,7 @@ int main(int argc, char **argv)
             else
             {
                 printf("Error: File could not be opened");
-                return 0;
+                return -1;
             }
         }
         else if (option == 2)
@@ -349,7 +358,7 @@ int main(int argc, char **argv)
             else
             {
                 printf("\nError: No file loaded\n");
-                return 0;
+                return -1;
             }
         }
         else if (option == 3)
@@ -362,7 +371,7 @@ int main(int argc, char **argv)
             else
             {
                 printf("\nError: No file loaded\n");
-                return 0;
+                return -1;
             }
         }
         else if (option == 4)
@@ -370,7 +379,7 @@ int main(int argc, char **argv)
             if (inputFile == NULL)
             {
                 printf("\nError: No file loaded\n");
-                return 0;
+                return -1;
             }
             printLinkedList(head);
         }
@@ -379,7 +388,7 @@ int main(int argc, char **argv)
         }
         else {
             printf("\nError: Invalid option\n");
-            return 0;
+            return -1;
         }
     }
 
