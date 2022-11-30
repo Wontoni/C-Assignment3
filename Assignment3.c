@@ -120,12 +120,13 @@ node *createLinkedList(FILE *fp)
         headcpy->next->prev = headcpy;
         headcpy = headcpy->next;
         int counter = 0;
+        int len;
         while (token != NULL)
         {
             switch (counter)
             {
             case 0:
-                int len = strlen(token);
+                len = strlen(token);
                 headcpy->type = (char *)malloc(len * sizeof(char));
                 strcpy(headcpy->type, token);
 
